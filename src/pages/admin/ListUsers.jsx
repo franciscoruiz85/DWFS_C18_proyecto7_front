@@ -178,6 +178,9 @@ export default function ListUsers() {
           onRowModesModelChange={handleRowModesModelChange}
           onRowEditStop={handleRowEditStop}
           loading={isLoading}
+          localeText={{
+            toolbarQuickFilterPlaceholder: 'Search commodities',
+          }}
         />
       </Box>
     </Container>
