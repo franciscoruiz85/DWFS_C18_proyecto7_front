@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Bar",
+    "key": "bar",
+    "description": "Establecimiento que sirve cerveza (a menudo de diferentes marcas) junto con otros tipos de bebidas y comida. No necesariamente produce su propia cerveza."
+  },
+  {
+    "name": "Pub Cervecería",
+    "key": "brewpub",
+    "description": " Un local que elabora su propia cerveza en el mismo lugar donde la sirve, generalmente acompañada de comida. Combina la producción artesanal con el servicio de restaurante."
+  },
+  {
+    "name": "Cerrada",
+    "key": "closed",
+    "description": "Cervecería que ya no está en operación."
+  },
+  {
+    "name": "Contrato",
+    "key": "contract",
+    "description": "Empresa que no tiene sus propias instalaciones de producción, sino que contrata a otras cervecerías para fabricar su cerveza bajo su marca."
+  },
+  {
+    "name": "Macro",
+    "key": "large",
+    "description": "Cervecería de gran tamaño que produce grandes volúmenes de cerveza, a menudo con distribución nacional o internacional."
+  },
+  {
+    "name": "Local",
+    "key": "location",
+    "description": "Cervecería que opera en una región o ciudad específica, a menudo con un enfoque en la comunidad local."
+  },
+  {
+    "name": "Micro",
+    "key": "micro",
+    "description": "Pequeña cervecería independiente que produce cantidades limitadas de cerveza, generalmente con énfasis en calidad y variedad."
+  },
+  {
+    "name": "Nano",
+    "key": "nano",
+    "description": "Una cervecería aún más pequeña que una microcervecería, a menudo con producciones muy reducidas (como para abastecer solo un bar local)."
+  },
+  {
+    "name": "En proyecto",
+    "key": "planning",
+    "description": "Empresa cervecera que aún no ha comenzado operaciones pero está en fase de desarrollo."
+  },
+  {
+    "name": "Indendiente",
+    "key": "proprietor",
+    "description": "Pequeña cervecería gestionada por sus dueños, a menudo con producción limitada y enfoque artesanal."
+  },
+  {
+    "name": "Regional",
+    "key": "regional",
+    "description": "Cervecería con distribución en una zona geográfica amplia (como un estado o país), pero sin llegar a ser una gran macrocervecería."
+  },
+  {
+    "name": "Sala de degustación",
+    "key": "taproom",
+    "description": "Espacio dentro o adjunto a una cervecería donde se sirven directamente sus propias cervezas, a menudo con opciones exclusivas."
+  }
+]

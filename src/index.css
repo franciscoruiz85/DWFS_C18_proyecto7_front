@@ -1,0 +1,46 @@
+:root {
+    margin-top: 30px;
+    margin-left: 200px;
+    margin-bottom: 50px;
+}
+
+#imgproductos {
+    max-height: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#imgproducto {
+    max-width: 300px;
+    max-height: 300px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#imgprodcheck {
+    max-width: 200px;
+    max-height: 200px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#gridproducto {
+    gap: 100px;
+}
+
+@media screen and (max-width: 899px) {
+    :root {
+        margin-top: 80px;
+        margin-left: 0px;
+        padding-bottom: 80px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #gridproducto {
+        gap: 50px;
+    }
+}
