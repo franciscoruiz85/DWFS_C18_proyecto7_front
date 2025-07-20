@@ -16,7 +16,8 @@ export const ProductState = (props) => {
       description: "",
       image: ""
     },
-    products: []
+    products: [],
+    bestProducts: []
   };
 
   const [globalState, dispatch] = useReducer(ProductReducer, initialState);
@@ -44,6 +45,20 @@ export const ProductState = (props) => {
       });
       dispatch({
           type: "GET_PRODUCTS",
+          payload: res.data.Products
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const getBestProducts = async () => {
+    try {
+      const res = await axiosClient.get("/products/best-products", {
+        withCredentials: true
+      });
+      dispatch({
+          type: "GET_BESTPRODUCTS",
           payload: res.data.Products
       });
     } catch (error) {
@@ -108,10 +123,12 @@ export const ProductState = (props) => {
   return (
     <ProductContext.Provider
       value={{
-        products: globalState.products,
         currentProduct: globalState.currentProduct,
+        products: globalState.products,
+        bestProducts: globalState.bestProducts,
         addProduct,
         getProducts,
+        getBestProducts,
         getProduct,
         updateProduct,
         deleteProduct,

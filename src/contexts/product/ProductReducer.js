@@ -11,6 +11,11 @@ const ProductReducer = (globalState, action) => {
         ...globalState,
         products: action.payload
       };
+    case "GET_BESTPRODUCTS":
+      return {
+        ...globalState,
+        bestProducts: action.payload
+      };
     case "GET_PRODUCT":
       return {
         ...globalState,

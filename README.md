@@ -83,6 +83,24 @@ https://hopyhour.netlify.app/
 - `npm run lint` - Ejecuta ESLint para verificar el código
 - `npm run preview` - Previsualiza la versión de producción
 
+
+## Accesos del aplicativo
+1. Usuario
+    - Al ingresar con el email y contraseña verá las opciones comunes:
+        - `Perfil`
+        - `Carrito` 
+
+
+
+2. Administrador
+    - Al ingresar con el email y contraseña verá opciones adicionales a las del usuario:
+        - `Lista de usuarios` permite ver los usuarios registrados y asignarle o quitarle permisos de `Administrador`
+        - `Nuevo producto` permite registrar un nuevo producto en el sitio
+        - `Lista de productos` permite editar y eliminar productos del sitio
+
+
+
+
 ## Conclusión
 Este proyecto representa una solución frontend moderna y eficiente para un e-commerce cervecero por su navegación dinámica se logró construir una interfaz intuitiva, modular y escalable.
 
