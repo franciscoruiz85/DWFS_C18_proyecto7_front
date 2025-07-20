@@ -67,6 +67,8 @@ El componente `ErrorBoundary` encapsula los componentes principales para captura
 El proyecto se encuentra desplegado en Netlify
 https://hopyhour.netlify.app/
 
+<img width="1714" height="815" alt="image" src="https://github.com/user-attachments/assets/553b2556-79f4-4a37-9f48-9125ad8e1b9d" />
+
 
 
 ## Instalación
