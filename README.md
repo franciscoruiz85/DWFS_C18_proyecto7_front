@@ -59,6 +59,8 @@ El componente `ErrorBoundary` encapsula los componentes principales para captura
 - Se hace uso de rutas anidadas con un layout común (Layout.jsx) y navegación (Navbar.jsx).
 - Se usa un ErrorBoundary para mejorar la experiencia de usuario en caso de fallos de renderizado.
 
+<img width="233" height="1388" alt="image" src="https://github.com/user-attachments/assets/22c09244-6498-44d1-b90e-a6bc9da85329" />
+
 
 
 ## Despliegue
