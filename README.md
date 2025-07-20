@@ -1,4 +1,4 @@
-# DWFS_C18_proyecto7_back - Aplicación para cervecería
+# DWFS_C18_proyecto7_front - Aplicación para cervecería
 
 Este es un proyecto desarrollado como parte del curso de Desarrollo Web Full Stack (DWFS), Cohort 18 de UDD. Construido con **React 19**, **Vite**, **Material UI (MUI)** y **Axios** entrega un aplicativo completo desde la presentación de los productos, venta de estos hasta la administración ellos y los usuarios.
 
@@ -66,7 +66,7 @@ El componente `ErrorBoundary` encapsula los componentes principales para captura
 El proyecto se encuentra desplegado en Netlify
 https://hopyhour.netlify.app/
 
-<img width="1917" height="906" alt="image" src="https://github.com/user-attachments/assets/4392fe04-2300-4aae-8f41-e37ad45002cb" />
+<img width="1915" height="906" alt="image" src="https://github.com/user-attachments/assets/23833b4b-414a-4b5b-86b9-6852d6819c96" />
 
 
 ## Instalación
@@ -85,20 +85,30 @@ https://hopyhour.netlify.app/
 
 
 ## Accesos del aplicativo
+
+<img width="1211" height="376" alt="image" src="https://github.com/user-attachments/assets/dc4dbf1b-65d4-4eb9-8a49-321ff6d594e9" />
+
 1. Usuario
     - Al ingresar con el email y contraseña verá las opciones comunes:
         - `Perfil`
         - `Carrito` 
+        - `Cerrar sesión`
+    - Se dejó un usuario registrado:
+        - usuario: `juan.perez@email.com`
+        - password: `123456`
 
-
+<img width="235" height="846" alt="image" src="https://github.com/user-attachments/assets/d58496ba-0961-411d-af89-786e245f5e1f" />
 
 2. Administrador
     - Al ingresar con el email y contraseña verá opciones adicionales a las del usuario:
         - `Lista de usuarios` permite ver los usuarios registrados y asignarle o quitarle permisos de `Administrador`
         - `Nuevo producto` permite registrar un nuevo producto en el sitio
         - `Lista de productos` permite editar y eliminar productos del sitio
+    - Se dejó un usuario administrador registrado:
+        - usuario: `admin@admin.cl`
+        - password: `4Dm1N.072025`
 
-
+<img width="234" height="849" alt="image" src="https://github.com/user-attachments/assets/7d81a13d-14e4-4306-8fe9-1ba974007f66" />
 
 
 ## Conclusión
