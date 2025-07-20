@@ -17,9 +17,10 @@ const ProductReducer = (globalState, action) => {
         currentProduct: action.payload
       };
     case "UPDATE_PRODUCT":
-      break;
-    case "DELETE_PRODUCT":
-      break;
+      return {
+        ...globalState,
+        currentProduct: []
+      };
     default:
       return globalState;
   }

@@ -1,6 +1,6 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProductContext from "../../contexts/product/ProductContext"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import {
   Container,
   Typography,
@@ -10,45 +10,72 @@ import {
   Button
 } from "@mui/material"
 
-const NewProduct = () => {
+export default function EditProduct() {
   const navegate = useNavigate();
-  const prodCtx = useContext(ProductContext);
-  const { addProduct, getProducts } = prodCtx;
+  const location = useLocation();
+  const product_id = location.state?.product_id;
 
-  const [newProduct, setNewProdct] = useState({
-    slug: "",
-    productname: "",
-    type: "",
-    cc: "",
-    price: "",
-    currency: "CLP",
-    description: "",
-    image: ""
-  })
+  const ctxProd = useContext(ProductContext);
+  const { currentProduct, getProduct, updateProduct } = ctxProd;
 
   const [errorMsg, setErrorMsg] = useState("");
-
-  const handleChange = (e) => {
-    e.preventDefault();
-
-    setNewProdct({
-      ...newProduct,
-      [e.target.name]: e.target.value
-    })
-  }
 
   const handleSubmit = async (e) => {
     setErrorMsg("");
     e.preventDefault();
 
-    const isRegistered = await addProduct(newProduct);
-    if (isRegistered.status == 500) {
-      setErrorMsg("Ha ocurrido un error al registrar el producto");
+    const isUpdated = await updateProduct(editedProduct);
+    if (!isUpdated) {
+      setErrorMsg("Ha ocurrido un error al actualizar el producto");
     } else {
-      await getProducts();
-
       navegate("/admin-productos");
     }
+  }
+  
+  useEffect(() => {
+    if (product_id) {
+      getProduct(product_id);
+    } else {
+      navegate("/admin-productos");
+    }
+  }, [product_id]);
+  
+  const { slug, productname, type, cc, price, description, image } = currentProduct;
+  const [editedProduct, setEditedProduct] = useState({
+    id: product_id,
+    slug: "",
+    productname: "",
+    type: "",
+    cc: "",
+    price: "",
+    description: "",
+    image: ""
+  })
+
+  useEffect(() => {
+    const updateData = () => {
+      return setEditedProduct({
+        ...editedProduct,
+        slug,
+        productname,
+        type,
+        cc,
+        price,
+        description,
+        image
+      })
+    };
+
+    updateData();
+  }, [currentProduct]);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+
+    setEditedProduct({
+      ...editedProduct,
+      [e.target.name]: e.target.value
+    })
   }
 
   return (
@@ -62,7 +89,7 @@ const NewProduct = () => {
             fontWeight: "bold"
           }}
         >
-          Agregar producto
+          Editar producto
         </Typography>
         <Box
           component="form"
@@ -82,6 +109,7 @@ const NewProduct = () => {
             name="slug"
             type="text"
             multiline
+            value={editedProduct.slug}
             onChange={(e) => {handleChange(e)}}
             placeholder="Cerverza_Gluden_Draak_Classic_330cc"
             sx={{
@@ -94,6 +122,7 @@ const NewProduct = () => {
             id="productname"
             name="productname"
             type="text"
+            value={editedProduct.productname}
             onChange={(e) => {handleChange(e)}}
             placeholder="Cerveza Gulden Draak Classic"
             sx={{
@@ -108,6 +137,7 @@ const NewProduct = () => {
             type="text"
             multiline
             minRows={2}
+            value={editedProduct.description}
             onChange={(e) => {handleChange(e)}}
             placeholder="Gulden Draak Classic es una cerveza oscura, triple, de alta fermentación. Con cremosa espuma, aroma de alcohol, malta quemada y café. Con un sabor complejo de notas de caramelo, malta tostada y café. Regusto agridulce y muy largo. 10,5° Alc."
             sx={{
@@ -120,6 +150,7 @@ const NewProduct = () => {
             id="type"
             name="type"
             type="text"
+            value={editedProduct.type}
             onChange={(e) => {handleChange(e)}}
             placeholder="Cerveza, Vaso"
             sx={{
@@ -132,6 +163,7 @@ const NewProduct = () => {
             id="cc"
             name="cc"
             type="number"
+            value={editedProduct.cc}
             onChange={(e) => {handleChange(e)}}
             placeholder="330, 750, 1000"
             inputProps={{ min: 100 }}
@@ -145,6 +177,7 @@ const NewProduct = () => {
             id="price"
             name="price"
             type="number"
+            value={editedProduct.price}
             onChange={(e) => {handleChange(e)}}
             placeholder="330, 750, 1000"
             inputProps={{ min: 100 }}
@@ -159,6 +192,7 @@ const NewProduct = () => {
             name="image"
             type="text"
             multiline
+            value={editedProduct.image}
             onChange={(e) => {handleChange(e)}}
             placeholder="https://imagenes.com/image"
             sx={{
@@ -177,7 +211,7 @@ const NewProduct = () => {
               }
             }}
           >
-            Registrar
+            Actualizar
           </Button>
           <Typography
             variant="body1"
@@ -189,12 +223,10 @@ const NewProduct = () => {
               fontWeight: "bold"
             }}
           >
-            {errorMsg}
+            { errorMsg }
           </Typography>
         </Box>
       </Container>
     </>
   )
 }
-
-export default NewProduct

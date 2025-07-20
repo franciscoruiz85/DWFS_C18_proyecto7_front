@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useContext, useEffect, useState } from 'react'
 import UserContext from '../../contexts/user/UserContext'
 import {
@@ -17,6 +16,7 @@ import {
   GridActionsCellItem,
   GridRowEditStopReasons
 } from '@mui/x-data-grid'
+import { esES } from '@mui/x-data-grid/locales'
 
 export default function ListUsers() {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function ListUsers() {
     setIsLoading(true);
     getUsers();
     setIsLoading(false);
-  }, [initialRows]);
+  }, [isLoading]);
   
   initialRows = users.map(user => ({
     id: user._id,
@@ -50,23 +50,6 @@ export default function ListUsers() {
     setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
   };
 
-  const handleSaveClick = (id) => async () => {
-    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
-
-    const editedUser = await rows.filter((row) => row.id === id);
-    console.log(editedUser)
-    await adminUser(editedUser)
-    initialRows = [];
-  };
-  
-  const handleDeleteClick = (id) => async () => {
-    //setRows(rows.filter((row) => row.id !== id));
-    const deletedUser = await rows.filter((row) => row.id === id);
-    console.log(deletedUser)
-    await adminUser(deletedUser)
-    initialRows = [];
-  };
-
   const handleCancelClick = (id) => () => {
     setRowModesModel({
       ...rowModesModel,
@@ -77,6 +60,30 @@ export default function ListUsers() {
     if (editedRow.isNew) {
       setRows(rows.filter((row) => row.id !== id));
     }
+  };
+
+  const handleSaveClick = (id) => async () => {
+    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+
+    const editedUser = await rows.filter((row) => row.id === id);
+    await adminUser(editedUser);
+
+    initialRows = [];
+    setIsLoading(true);
+  };
+  
+  const handleDeleteClick = (id) => async () => {
+    await deleteUser(id);
+    setRows(rows.filter((row) => row.id !== id));
+
+    initialRows = [];
+    setIsLoading(true);
+  };
+
+  const processRowUpdate = (newRow) => {
+    const updatedRow = { ...newRow, isNew: false };
+    setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
+    return updatedRow;
   };
 
   const handleRowModesModelChange = (newRowModesModel) => {
@@ -110,7 +117,7 @@ export default function ListUsers() {
               label="Save"
               material={{
                 sx: {
-                  color: 'primary.main',
+                  color: 'green',
                 },
               }}
               onClick={handleSaveClick(id)}
@@ -118,7 +125,11 @@ export default function ListUsers() {
             <GridActionsCellItem
               icon={<CancelIcon />}
               label="Cancel"
-              className="textPrimary"
+              material={{
+                sx: {
+                  color: 'red',
+                },
+              }}
               onClick={handleCancelClick(id)}
               color="inherit"
             />
@@ -129,15 +140,18 @@ export default function ListUsers() {
           <GridActionsCellItem
             icon={<EditIcon />}
             label="Edit"
-            className="textPrimary"
+            color='primary'
             onClick={handleEditClick(id)}
-            color="inherit"
           />,
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
+            material={{
+              sx: {
+                color: 'red',
+              },
+            }}
             onClick={handleDeleteClick(id)}
-            color="inherit"
           />
         ];
       }
@@ -177,10 +191,9 @@ export default function ListUsers() {
           rowModesModel={rowModesModel}
           onRowModesModelChange={handleRowModesModelChange}
           onRowEditStop={handleRowEditStop}
+          processRowUpdate={processRowUpdate}
           loading={isLoading}
-          localeText={{
-            toolbarQuickFilterPlaceholder: 'Search commodities',
-          }}
+          localeText={esES.components.MuiDataGrid.defaultProps.localeText}
         />
       </Box>
     </Container>

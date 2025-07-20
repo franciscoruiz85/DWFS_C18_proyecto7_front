@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Logo from "../assets/HopyHour_logo.png";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/user/UserContext";
+import ProductContext from "../contexts/product/ProductContext";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 
@@ -24,6 +25,7 @@ function ResponsiveDrawer(props) {
   const ctx = useContext(UserContext);
   const {
     currentUser,
+    getUsers,
     cart,
     authStatus,
     verifyUser,
@@ -32,6 +34,7 @@ function ResponsiveDrawer(props) {
     setLoading
   } = ctx;
   const { role } = ctx.currentUser;
+  const { getProducts } = useContext(ProductContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -58,9 +61,13 @@ function ResponsiveDrawer(props) {
     getCart();
     setLoading(false);
   }, []);
-
+  
   useEffect(() => {
     getCart();
+    if (role == "Administrador") {
+      getUsers();
+      getProducts();
+    }
   }, [currentUser]);
 
   useEffect(() => {

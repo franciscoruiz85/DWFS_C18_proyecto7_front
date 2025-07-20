@@ -5,7 +5,6 @@ import axiosClient from "../../config/axios";
 
 export const UserState = (props) => {
   const initialState = {
-    users: [],
     currentUser: {
       username: "",
       email: "",
@@ -16,6 +15,7 @@ export const UserState = (props) => {
     },
     authStatus: false,
     cart: [],
+    users: [],
     sessionURL: null,
     globalLoading: false
   };
@@ -88,8 +88,8 @@ export const UserState = (props) => {
 
   const adminUser = async (data) => {
     try {
-      const res = await axiosClient.put("users/admin-user", data, {
-        withCredentials:true
+      const res = await axiosClient.put("/users/admin-user", data, {
+        withCredentials: true
       })
 
       await getUsers();
@@ -103,8 +103,9 @@ export const UserState = (props) => {
   
   const deleteUser = async (data) => {
     try {
-      const res = await axiosClient.put("users/delete-user", data, {
-        withCredentials:true
+      const res = await axiosClient.delete("/users/", {
+        data: { id: data }, 
+        withCredentials: true
       })
 
       await getUsers();
@@ -133,7 +134,7 @@ export const UserState = (props) => {
 
   const editCart = async (data) => {
     try {
-      const res = await axiosClient.put("carts/edit-cart", { products: data }, {
+      const res = await axiosClient.put("/carts/edit-cart", { products: data }, {
         withCredentials: true
       })
 
@@ -178,7 +179,7 @@ export const UserState = (props) => {
 
   const clearCart = async () => {
     try {
-      await axiosClient.get("carts/clear-cart", {
+      await axiosClient.get("/carts/clear-cart", {
         withCredentials: true
       })
   

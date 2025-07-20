@@ -34,8 +34,10 @@ const UserReducer = (globalState, action) => {
         },
         authStatus: false,
         cart: [],
+        users: [],
         sessionURL: null,
         globalLoading: false,
+        products: [],
         msg: action.payload
       };
     case "GET_CART":

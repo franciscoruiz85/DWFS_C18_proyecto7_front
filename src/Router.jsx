@@ -6,6 +6,7 @@ import Profile from "./pages/user/Profile"
 import ListUsers from "./pages/admin/ListUsers"
 import NewProduct from "./pages/admin/NewProduct"
 import ListProducts from "./pages/admin/ListProducts"
+import EditProduct from "./pages/admin/EditProduct"
 import Products from "./pages/products/Productos"
 import Product from "./pages/products/Producto"
 import BreweriesTypes from "./pages/CerveceriasTipos"
@@ -54,9 +55,13 @@ const Router = () => {
                 <Route
                   path="/admin-productos"
                   element={ <PrivateRoute component={ListProducts} /> }
-                />                
+                />
+                <Route
+                  path="/editar-producto"
+                  element={ <PrivateRoute component={EditProduct} /> }
+                />
                 <Route path="/productos" element={<Products />} />
-                <Route path="/producto/:id" element={<Product />} />
+                <Route path="/producto/:slug" element={<Product />} />
                 <Route path="/cerveceriasTipos" element={<BreweriesTypes />} />
                 <Route path="/contacto" element={<Contact />} />
                 <Route path="/nosotros" element={<About />} />

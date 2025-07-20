@@ -5,18 +5,18 @@ import axiosClient from "../../config/axios";
 
 export const ProductState = (props) => {
   const initialState = {
-    products: [],
     currentProduct: {
       _id: null,
-      idProd: '',
-      slug: '',
-      productname: '',
-      type: '',
-      cc: '',
-      price: '',
-      description: '',
-      image: '',
-    }
+      idProd: "",
+      slug: "",
+      productname: "",
+      type: "",
+      cc: "",
+      price: "",
+      description: "",
+      image: ""
+    },
+    products: []
   };
 
   const [globalState, dispatch] = useReducer(ProductReducer, initialState);
@@ -39,13 +39,62 @@ export const ProductState = (props) => {
 
   const getProducts = async () => {
     try {
-        const res = await axiosClient.get("/products");
-        dispatch({
-            type: "GET_PRODUCTS",
-            payload: res.data.Products
-        });
+      const res = await axiosClient.get("/products", {
+        withCredentials: true
+      });
+      dispatch({
+          type: "GET_PRODUCTS",
+          payload: res.data.Products
+      });
     } catch (error) {
-        console.error(error);
+      console.error(error);
+    }
+  }
+
+  const getProduct = async (product_id) => {
+    try {
+      const res = await axiosClient.get(`/products/${product_id}`, {
+        withCredentials: true
+      })
+      dispatch({
+        type: "GET_PRODUCT",
+        payload: res.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const updateProduct = async (form) => {
+    try {
+      await axiosClient.put("/products/update", form, {
+        withCredentials: true
+      })
+      dispatch({
+        type:"UPDATE_PRODUCT"
+      })
+
+      await getProducts();
+      return true
+    } catch (error) {
+      console.error(error.response.data.msg);
+      return false
+    }
+  }
+
+  const deleteProduct = async (data) => {
+    try {
+      const res = await axiosClient.delete("/products/", {
+        data: { id: data },
+        withCredentials: true
+      });
+
+      await getProducts();
+
+      return res.data.msg
+    } catch (error) {
+      console.log(error);
+      return
     }
   }
 
@@ -60,8 +109,12 @@ export const ProductState = (props) => {
     <ProductContext.Provider
       value={{
         products: globalState.products,
+        currentProduct: globalState.currentProduct,
         addProduct,
         getProducts,
+        getProduct,
+        updateProduct,
+        deleteProduct,
         setCurrentProduct
       }}
     >
