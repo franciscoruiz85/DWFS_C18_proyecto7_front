@@ -29,22 +29,14 @@ const Contact = () => {
         gutterBottom
         sx={{ marginBottom: '20px' }}
       >
-        Discord:
-        <Typography
-          component={Link}
-          to={'https://discord.gg/WMPB3VZ'}
-          target="_blank"
-          sx={{ paddingLeft: 1 }}
-        >
-          https://discord.gg/WMPB3VZ
-        </Typography>
+        Sitio para proyecto del bootcamp DWFS de la UDD.
       </Typography>
       <Typography
         variant="h6"
         gutterBottom
         sx={{ marginBottom: '20px' }}
       >
-        E-mail: info@openbrewerydb.org
+        No poseemos datos de contacto por el momento.
       </Typography>
     </Container>
   )

@@ -30,16 +30,13 @@ const About = () => {
         sx={{ marginBottom: '20px' }}
       >
         <p>
-          Proyecto sin fines de lucro sobre cervecerías.
+          Proyecto de aplicativo web para el bootcamp DWFS de la UDD.
         </p>
         <p>
-          Los datos pueden ser accesados directamente en <Link to='https://www.openbrewerydb.org/' target="_blank">Open Brewery DB</Link>.
+          Está inspirado en el gusto por la cerveza y artículos relacionados a esta.
         </p>
         <p>
-          La información mostrada corresponde a datos entregados y actualizados desinteresadamente por diferentes personas.
-        </p>
-        <p>
-          Si desea hacer algún aporte revise nuestra sección <b>"Contacto"</b>.
+          La información mostrada no es real solamente es con fines educativos.
         </p>
       </Typography>
     </Container>
